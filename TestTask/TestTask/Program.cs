@@ -17,20 +17,20 @@ namespace TestTask
             Response r1 = new Response();
             Json js = new Json();
             js.Deserialization(r1.Get());
-            
+            r1.response.Close();
 
 
         }
     }
     public class Response
     {
+        public WebResponse response;
         public Stream Get()
         {
             WebRequest request = WebRequest.Create("http://api.lod-misis.ru/testassignment");
-            WebResponse response = request.GetResponse();
+            response = request.GetResponse();
             Stream stream = response.GetResponseStream();
             return stream;
-            
         }
     }
     public class Json
